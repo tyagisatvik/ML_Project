@@ -2,5 +2,9 @@ pandas
 numpy
 seaborn
 scikit-learn
+catboost
+xgboost
+matplotlib
+dill
 # -e . installs the current package in "editable" mode, allowing changes to the source code to be immediately reflected without reinstalling.
 -e .
