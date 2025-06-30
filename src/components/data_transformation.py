@@ -15,6 +15,8 @@ from sklearn.compose import ColumnTransformer
 from src.utils import save_object
 
 from src.components.data_ingestion import DataIngestion
+from src.components.model_trainer import ModelTrainer
+
 
 ## dataclass is used to store configuration settings in a structured way.
 @dataclass
@@ -153,9 +155,14 @@ if __name__ == "__main__":
 
     # Step 2: Data Transformation
     data_transformation = DataTransformation()
-    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_data_path, test_data_path)
+    train_arr, test_arr, preprocessor_path = data_transformation.initiate_data_transformation(train_data_path, test_data_path)
 
     logging.info("Data transformation script executed successfully.")
+
+    # Step 3: Model Training
+    model_trainer = ModelTrainer()
+    r2_square = model_trainer.initiate_model_trainer(train_arr, test_arr, preprocessor_path)
+    logging.info(f"Model training completed. Best model R2 score: {r2_square}")
 
 
 
